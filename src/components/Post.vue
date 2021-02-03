@@ -18,8 +18,19 @@
           </v-form>
       </v-card-text>
       <v-card-actions>
-        <v-btn color="orange" text @click="editPost(post)"> Edit </v-btn>
-        <v-btn color="error" depressed> Delete </v-btn>
+        <v-btn color="orange" text @click="editPost(post)"> 
+            {{editing? ' Update ':' Edit '}} 
+        </v-btn>
+        <v-btn 
+            color="secondary" 
+            v-if="editing" 
+            @click="cancelEditPost()" 
+            depressed> Cancel </v-btn>
+        <v-btn 
+            color="error" 
+            v-else 
+            @click="deletePost(post.id)"
+            depressed> Delete </v-btn>
       </v-card-actions>
     </v-card>
   </div>
@@ -42,11 +53,20 @@ export default {
         if (this.editing) {
             this.title = post.title
             this.body = post.body
+        } else {
+            post.title = this.title
+            post.body = this.body
         }
     },
+    cancelEditPost() {
+        this.editing = !this.editing
+        this.title = ""
+        this.body = ""
+    },
+    deletePost(id) {
+        this.$store.dispatch('deletePost', id)
+    }
   }
-
-  
 };
 </script>
 
