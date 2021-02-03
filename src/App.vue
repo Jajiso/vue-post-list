@@ -66,10 +66,12 @@ export default {
   data: () => ({
     drawer: true,
     items: [
-      { to: "/", title: "Home", icon: "mdi-home-city" },
-      { to: "/createPost", title: "My Account", icon: "mdi-account" },
-      { to: "/", title: "Users", icon: "mdi-account-group-outline" },
+      { to: "/", title: "Post List", icon: "mdi-home" },
+      { to: "/createPost", title: "Create New Post", icon: "mdi-plus" },
     ],
   }),
+  created() {
+    this.$store.dispatch('setPostFromAPI')
+  },
 };
 </script>
