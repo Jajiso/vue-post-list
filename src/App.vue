@@ -39,6 +39,7 @@
       v-model="drawer"
       app
       clipped
+      dark
       class="deep-purple accent-4"
     >
       <v-list dense rounded>

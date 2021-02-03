@@ -1,9 +1,16 @@
 <template>
   <div>
-      <h1>Post List</h1>
-      <Post />
-      <Post />
-      <Post />
+    <v-card color="blue" dark class="ma-10">
+        <v-card-text class="display-1 text-center">
+            Post List
+        </v-card-text>
+    </v-card>
+
+    <v-card color="secondary" dark class="ma-10 pa-10">
+        <div v-for="post in getPostList" :key="post.id">
+          <Post :post="post" class="mb-10"/>
+        </div>
+    </v-card>
   </div>
 </template>
 
@@ -14,6 +21,11 @@ export default {
     components: {
         Post
     },
+    computed: {
+        getPostList() {
+            return this.$store.getters.getPostList
+        }
+    }
 }
 </script>
 
