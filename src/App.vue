@@ -1,11 +1,8 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+    <v-app-bar app clipped-left dark class="deep-purple accent-4">
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -38,24 +35,41 @@
       </v-btn>
     </v-app-bar>
 
+    <v-navigation-drawer
+      v-model="drawer"
+      app
+      clipped
+      class="deep-purple accent-4"
+    >
+      <v-list dense rounded>
+        <v-list-item v-for="item in items" :key="item.title" :to="item.to" link>
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+
     <v-main>
-      <HelloWorld/>
+      <router-view />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
-
 export default {
-  name: 'App',
-
-  components: {
-    HelloWorld,
-  },
-
+  name: "App",
   data: () => ({
-    //
+    drawer: true,
+    items: [
+      { to: "/", title: "Home", icon: "mdi-home-city" },
+      { to: "/createPost", title: "My Account", icon: "mdi-account" },
+      { to: "/", title: "Users", icon: "mdi-account-group-outline" },
+    ],
   }),
 };
 </script>
