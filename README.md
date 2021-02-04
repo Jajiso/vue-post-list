@@ -1,5 +1,13 @@
 # post-list
 
+## Project Screenshots
+
+![](images/postList_1.PNG)
+
+![](images/postList_2.PNG)
+
+![](images/postList_3.PNG)
+
 ## Project setup
 ```
 npm install
